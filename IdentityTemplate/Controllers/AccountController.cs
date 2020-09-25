@@ -120,7 +120,7 @@ namespace IdentityTemplate.Controllers
             return View(model);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
