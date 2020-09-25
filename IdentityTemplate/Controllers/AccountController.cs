@@ -120,13 +120,13 @@ namespace IdentityTemplate.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("index", "home");
         }
-        
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult AccessDenied()
