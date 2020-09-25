@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <ProjectReference Include="..\CustomValidation\CustomValidation.csproj" />
   </ItemGroup>
 
 </Project>
