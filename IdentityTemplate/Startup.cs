@@ -67,13 +67,13 @@ namespace IdentityTemplate
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "";
-                    options.ClientSecret = "";
+                    options.ClientId = config["Auhtentication:GoogleClientId"];
+                    options.ClientSecret = config["Auhtentication:GoogleClientSecret"]; ;
                 })
                 .AddFacebook(options =>
                 {
-                    options.AppId = "";
-                    options.AppSecret = "";
+                    options.AppId = config["Auhtentication:FacebookAppId"]; 
+                    options.AppSecret = config["Auhtentication:FacebookAppSecret"];
                 });
 
         }
