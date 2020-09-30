@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Shared\NotFound.cshtml" />
+    <Content Remove="nlog.config" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +18,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,19 +26,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Watch Remove="Views\Shared\NotFound.cshtml" />
+    <_ContentIncludedByDefault Remove="nlog.config" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Shared\NotFound.cshtml" />
+    <None Include="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Shared\NotFound.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Shared\NotFound.cshtml" />
-  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1development_1json__JsonSchema="https://json.schemastore.org/appsettings" appsettings_1production_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
 
 </Project>

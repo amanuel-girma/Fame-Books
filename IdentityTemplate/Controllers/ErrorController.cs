@@ -33,6 +33,7 @@ namespace IdentityTemplate.Controllers
         }
 
         [Route("Error/{statusCode}")]
+        [AllowAnonymous]
         public IActionResult HttpStatusCodeHandler(int statusCode)
         {
             var statusCodeResult =
