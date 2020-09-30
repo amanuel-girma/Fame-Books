@@ -67,13 +67,13 @@ namespace IdentityTemplate
             services.AddAuthentication()
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "579534589641-h2etqbhkd3mqs2td7nl23kcdl5r2aqo8.apps.googleusercontent.com";
-                    options.ClientSecret = "Py7Mr41QW5K3B4q6ctxd6x30";
+                    options.ClientId = "";
+                    options.ClientSecret = "";
                 })
                 .AddFacebook(options =>
                 {
-                    options.AppId = "2919769228252798";
-                    options.AppSecret = "9a3f31eaf4bfad8410a2f7d11c9709dd";
+                    options.AppId = "";
+                    options.AppSecret = "";
                 });
 
         }
