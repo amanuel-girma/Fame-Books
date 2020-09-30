@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 
+
 namespace IdentityTemplate
 {
     public class Startup
@@ -31,15 +32,17 @@ namespace IdentityTemplate
         {
             services.AddDbContextPool<AppDbContext>
                     (options => options.UseSqlServer(config.GetConnectionString("IdentityDatabase")));
+
             services.AddMvc(config =>
             {
                 //globally Authorize
                 //use allowanonymous attribute on action that do not require Authorization (ex Login)
                 var policy = new AuthorizationPolicyBuilder()
-                       .RequireAuthenticatedUser()
-                       .Build();
+                                 .RequireAuthenticatedUser()
+                                 .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
+
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 2;
@@ -48,7 +51,31 @@ namespace IdentityTemplate
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
-            }).AddEntityFrameworkStores<AppDbContext>();
+
+                options.SignIn.RequireConfirmedEmail = true;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromHours(5);
+            });
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "579534589641-h2etqbhkd3mqs2td7nl23kcdl5r2aqo8.apps.googleusercontent.com";
+                    options.ClientSecret = "Py7Mr41QW5K3B4q6ctxd6x30";
+                })
+                .AddFacebook(options =>
+                {
+                    options.AppId = "2919769228252798";
+                    options.AppSecret = "9a3f31eaf4bfad8410a2f7d11c9709dd";
+                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

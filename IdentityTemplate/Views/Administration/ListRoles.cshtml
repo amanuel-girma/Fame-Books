@@ -13,20 +13,22 @@
 
     foreach (var role in Model)
     {
-        <div class="card mb-3">
-            <div class="card-header">
-                Role Id : @role.Id
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">@role.Name</h5>
-            </div>
-            <div class="card-footer">
-                <a asp-action="editrole" asp-controller="administration" asp-route-id="@role.Id" class="btn btn-primary">Edit</a>
-                <form method="post" asp-action="deleterole" asp-controller="administration" asp-route-id="@role.Id">
+        <form method="post" asp-action="deleterole" asp-controller="administration" asp-route-id="@role.Id">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Role Id : @role.Id
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@role.Name</h5>
+                </div>
+                <div class="card-footer">
+                    <a asp-action="editrole" asp-controller="administration" asp-route-id="@role.Id" class="btn btn-primary">Edit</a>
+
                     <input type="submit" class="btn btn-danger" value="Delete" />
-                </form>
+
+                </div>
             </div>
-        </div>
+        </form>
     }
 }
 else

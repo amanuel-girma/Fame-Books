@@ -15,28 +15,30 @@
 
     foreach (var user in Model)
     {
-        <div class="card mb-3">
-            <div class="card-header">
-                User Id : @user.Id
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">@user.UserName</h5>
-            </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-md-2">
-                        <a asp-action="edituser" asp-controller="administration" asp-route-id="@user.Id" class="btn btn-block btn-primary">Edit</a>
-                    </div>
-
-                    <div class="col-md-2">
-                        <form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
-                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
-                        </form>
-                    </div>
+        <form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
+            <div class="card mb-3">
+                <div class="card-header">
+                    User Id : @user.Id
                 </div>
+                <div class="card-body">
+                    <h5 class="card-title">@user.UserName</h5>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a asp-action="edituser" asp-controller="administration" asp-route-id="@user.Id" class="btn btn-block btn-primary">Edit</a>
+                        </div>
 
+                        <div class="col-md-2">
+
+                            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
+        </form>
     }
 }
 else
