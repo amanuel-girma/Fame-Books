@@ -1,0 +1,23 @@
+﻿@model FAMEBooks.ViewModels.Category.EditViewModel
+
+
+@{
+    ViewBag.Title = "Edit Category";
+}
+<br />
+<h5>Edit Category</h5>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="edit">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input hidden asp-for="CategoryId" />
+            <div class="form-group">
+                <label asp-for="CategoryName"></label>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Update</button>
+        </form>
+    </div>
+</div>

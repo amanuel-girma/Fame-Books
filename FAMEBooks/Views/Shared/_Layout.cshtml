@@ -1,0 +1,111 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/datatables/datatables.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">FAME Books</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="index" asp-controller="Home">Home<span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="index" asp-controller="Book">Books<span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-action="index" asp-controller="Category">Categories<span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Administration
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-action="listroles" asp-controller="administration">Roles</a>
+                                    <a class="dropdown-item" asp-action="listusers" asp-controller="administration">Users</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Disabled</a>
+                        </li>
+                    </ul>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div class="form-inline my-2 my-lg-0">
+                            <div class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @User.Identity.Name
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <form method="post" asp-action="logout" asp-controller="account">
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form>
+                                    <a class="dropdown-item" asp-action="changepassword" asp-controller="account">Change  Password</a>
+                                    <a class="dropdown-item" asp-action="addpassword" asp-controller="account">Add  Password</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">My Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="account" asp-action="register">
+                                    Register
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="account" asp-action="login">
+                                    Login
+                                </a>
+                            </li>
+                        </ul>
+                    }
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            @RenderBody()
+        </main>
+
+        <footer></footer>
+    </div>
+
+    <script src="~/jquery/jquery.min.js"></script>
+    <script src="~/jquery-validate/jquery.validate.js"></script>
+    <script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/popper.js/umd/popper.min.js"></script>
+    <script src="~/twitter-bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/datatables/datatables.min.js"></script>
+
+    @RenderSection("Styles", false)
+    @RenderSection("Scripts", false)
+</body>
+</html>

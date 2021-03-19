@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FAMEBooks.ViewModels.Category.DisplayViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<p>
+    <a class="btn btn-sm btn-success" asp-action="Create">Add New</a>
+</p>
+<table id="categories" class="display compact" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Category Id
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Books
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#categories').DataTable({
+                "searching": true,
+                "ordering": true,
+                ajax: {
+                    url: "https://localhost:44393/Category/Categories",
+                    dataSrc: ''
+                },
+                "columns": [
+                    { "data": "categoryId" },
+                    { "data": "categoryName" },
+                    { "data": "bookCount" },
+                    {
+                        "render": function (data, type, full, meta) {
+                            return '<a class="btn btn-sm btn-link" href="/Category/Edit/' + full.categoryId + '">Edit</a>';
+                        }
+                    },
+                    {
+                        "render": function (data, type, full, meta) {
+                            return '<a class="btn btn-sm btn-link" href="/Category/Delete/' + full.categoryId + '">Details</a>';
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}

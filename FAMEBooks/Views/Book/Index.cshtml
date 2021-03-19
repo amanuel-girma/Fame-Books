@@ -1,0 +1,92 @@
+﻿@model IEnumerable<FAMEBooks.ViewModels.Category.DisplayViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<p>
+    <a class="btn btn-sm btn-success" asp-action="Create">Add New</a>
+</p>
+<table id="books" class="display compact nowrap table-responsive-sm" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Publisher
+            </th>
+            <th>
+                Count
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#books').DataTable({
+                responsive: true,
+                responsive: {
+                    details: false
+                },
+                "searching": true,
+                "ordering": true,
+                ajax: {
+                    url: "https://localhost:44393/Book/Books",
+                    dataSrc: ''
+                },
+                "columns": [
+                    { "data": "title" },
+                    { "data": "category" },
+                    { "data": "author" },
+                    { "data": "publisher" },
+                    { "data": "bookCount" },
+                    {
+                        "render": function (data, type, full) {
+                            return '<a class="btn btn-sm btn-link" href="/Book/Edit/' + full.bookId + '">Edit</a>';
+                        }
+                    },
+                    {
+                        "render": function (data, type, full) {
+                            return '<a class="btn btn-sm text-danger btn-link" href="/Book/Delete/' + full.bookId + '">Delete</a>';
+                        }
+                    }
+                ],
+                "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": "<button class=\"btn btn-sm btn-primary\">Click!</button>"
+                }]
+            });
+        });
+    </script>
+}
+
+
+
+@*
+
+        "status": 1,
+    "updatedByUserId": "Philosophy",
+    "bookId": "84dc9ef7-2129-4b55-8fd7-fe554aedd004",
+    "title": "Amanue ",
+    "author": "Girma",
+    "isbn": "1212-12134",
+    "pages": 1243,
+    "publisher": "Amazon",
+    "datePublished": "2021-03-12",
+    "bookCount": 10,
+    "categoryId": "120b76cf-bd46-4a14-94ed-a0d3ac67c4cf",
+    "createdByUserId": "86d142ff-5820-42ef-a6eb-a5b0bb64a458"
+
+*@

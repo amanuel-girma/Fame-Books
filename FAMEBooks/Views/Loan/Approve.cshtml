@@ -1,0 +1,61 @@
+﻿@model FAMEBooks.ViewModels.Loan.DisplayLoanRequest
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h4 class="text-success pl-5">Approve Borrow Request</h4>
+<hr />
+<form asp-action="approve">
+    <input hidden asp-for="BookId" />
+    <input hidden asp-for="LoanId" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="Title"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="Title">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="Author"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="Author">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="Borrower"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="Borrower">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="LendBy"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="LendBy">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="DateBorrowed"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="DateBorrowed">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="ReturnDate"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="ReturnDate">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right"></label>
+        <div class="col-sm-6">
+            <input type="submit" class="btn btn-primary btn-sm" value="Submit" />
+            <a class="btn  btn-outline-danger btn-sm" asp-action="Index">Cancel</a>
+        </div>
+    </div>
+
+</form>

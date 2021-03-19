@@ -1,0 +1,49 @@
+﻿@model FAMEBooks.ViewModels.Loan.CreateViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h4 class="text-primary pl-5">Submit Borrow Request</h4>
+<hr />
+<form asp-action="borrow">
+    <input hidden asp-for="BookId" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="Title"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="Title">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="Author"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="Author">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="DatePublished"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="DatePublished">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right" asp-for="Pages"></label>
+        <div class="col-sm-6">
+            <input class="form-control form-control-sm" asp-for="Pages">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-right"></label>
+        <div class="col-sm-6">
+            @*<div class="col-sm-6">*@
+            <input type="submit" class="btn btn-primary " value="Submit" />
+            <a class="btn  btn-outline-danger" asp-action="Index">Cancel</a>
+            @*</div>
+                <div class="col-sm-6">
+                </div>*@
+        </div>
+    </div>
+
+</form>

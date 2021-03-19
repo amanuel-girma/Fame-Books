@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FAMEBooks.ViewModels.Loan.DisplayViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+
+<table id="books" class="display compact nowrap table-responsive-sm" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Borrower
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#books').DataTable({
+                responsive: true,
+                responsive: {
+                    details: false
+                },
+                "searching": true,
+                "ordering": true,
+                ajax: {
+                    url: "https://localhost:44393/Loan/GetRequests",
+                    dataSrc: ''
+                },
+                "columns": [
+                    { "data": "title" },
+                    { "data": "author" },
+                    { "data": "borrower" },
+                    { "data": "status" },
+                    {
+                        "render": function (data, type, full) {
+                            return '<a class="btn btn-sm btn-link" href="/Loan/Approve/' + full.loanId + '">Approve</a>';
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}
